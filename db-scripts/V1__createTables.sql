@@ -33,9 +33,9 @@ CREATE TABLE IF NOT EXISTS "user" (
 CREATE TABLE IF NOT EXISTS "restaurant" (
 	"id" serial NOT NULL UNIQUE PRIMARY KEY,
 	"name" varchar(255) NOT NULL,
-	"addresses" varchar(255)[] NOT NULL,
+	"address" varchar(255) NOT NULL,
 	"images" TEXT[],
-	"phone_numbers" varchar(255)[] NOT NULL,
+	"phone_number" varchar(255) NOT NULL,
 	"district_id" int NOT NULL REFERENCES "district" ("id"),
 	"establishment_type_id" int NOT NULL REFERENCES "establishment_type" ("id"),
 	"vk_link" varchar(255),

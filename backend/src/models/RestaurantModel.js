@@ -18,8 +18,8 @@ const RestaurantModel = db.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    addresses: {
-      type: DataTypes.ARRAY(DataTypes.STRING),
+    address: {
+      type: DataTypes.STRING,
       allowNull: false,
     },
     images: {
@@ -27,8 +27,8 @@ const RestaurantModel = db.define(
       allowNull: true,
       defaultValue: [],
     },
-    phone_numbers: {
-      type: DataTypes.ARRAY(DataTypes.STRING),
+    phone_number: {
+      type: DataTypes.STRING,
       allowNull: false,
     },
     district_id: {

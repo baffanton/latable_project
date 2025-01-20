@@ -97,7 +97,7 @@ class RestaurantService {
       return { totalRating: 0, reviewCount: 0, comments: [] };
     }
 
-    return reviewList.reduce(
+    const reviewListTotal = await reviewList.reduce(
       async (acc, currentReview) => {
         const { user_id, rating, comment, publication_date } = currentReview;
 
@@ -105,8 +105,7 @@ class RestaurantService {
 
         if (!comment) {
           return {
-            totalRating:
-              (awaitAcc.totalRating + rating) / (awaitAcc.reviewCount + 1),
+            totalRating: awaitAcc.totalRating + rating,
             reviewCount: awaitAcc.reviewCount + 1,
             comments: awaitAcc.comments,
           };
@@ -121,8 +120,7 @@ class RestaurantService {
         const { name, surname } = reviewUser;
 
         return {
-          totalRating:
-            (awaitAcc.totalRating + rating) / (awaitAcc.reviewCount + 1),
+          totalRating: awaitAcc.totalRating + rating,
           reviewCount: awaitAcc.reviewCount + 1,
           comments: [
             ...awaitAcc.comments,
@@ -137,6 +135,13 @@ class RestaurantService {
       },
       { totalRating: 0, reviewCount: 0, comments: [] }
     );
+
+    return {
+      ...reviewListTotal,
+      totalRating: Math.round(
+        reviewListTotal.totalRating / reviewListTotal.reviewCount
+      ),
+    };
   }
 
   async createReview(reviewInfo) {
@@ -253,31 +258,57 @@ class RestaurantService {
   }
 
   async getPopularList() {
-    const restaurants = await RestaurantModel.findAll();
     const restaurantsReview = await RestaurantReviewModel.findAll();
 
-    const restaurantsRating = restaurants.map((rest) => {
-      const reviews = restaurantsReview.filter(
-        (restReview) => restReview.restaurant_id === rest.id
-      );
+    const groupedReviews = restaurantsReview.reduce((acc, review) => {
+      const { restaurant_id, rating } = review;
 
-      if (!reviews.length) {
-        return {
-          ...rest,
-          ratingValue: 0,
-        };
+      const alreadyExistId = acc.find((item) => item.id === restaurant_id);
+
+      if (alreadyExistId) {
+        const filteredValues = acc.filter((item) => item.id !== restaurant_id);
+
+        return [
+          ...filteredValues,
+          {
+            id: restaurant_id,
+            rating: alreadyExistId.rating + rating,
+            count: alreadyExistId.count + 1,
+          },
+        ];
       }
 
-      return {
-        ...rest,
-        ratingValue: reviews.reduce((acc, review) => acc + review.rating, 0),
-      };
+      return [
+        ...acc,
+        {
+          id: restaurant_id,
+          rating: rating,
+          count: 1,
+        },
+      ];
+    }, []);
+
+    const groupedReviewsWithTotal = groupedReviews.map((item) => ({
+      id: item.id,
+      rating: item.rating / item.count,
+    }));
+
+    const sortedRestaurantsRating = groupedReviewsWithTotal.sort(
+      (a, b) => a.rating - b.rating
+    );
+    const limitedRestaurantsRating = sortedRestaurantsRating
+      .slice(0, 10)
+      .map((item) => item.id);
+
+    const findedRestaurants = await RestaurantModel.findAll({
+      where: {
+        id: {
+          [Op.or]: limitedRestaurantsRating,
+        },
+      },
     });
 
-    const sortedRestaurantsRating = restaurantsRating.sort((a, b) => a - b);
-    const limitedRestaurantsRating = sortedRestaurantsRating.slice(0, 10);
-
-    return limitedRestaurantsRating;
+    return findedRestaurants;
   }
 
   async getFilteredRestaurants(searchValue, filters, pagination) {
