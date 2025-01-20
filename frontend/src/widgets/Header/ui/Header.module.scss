@@ -1,0 +1,18 @@
+@import "@app/styles/global.scss";
+
+.header {
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 40px;
+  align-items: center;
+}
+
+.header__navigate {
+  display: flex;
+  gap: 30px;
+}
+
+.header__navigate-item {
+  width: 170px;
+}

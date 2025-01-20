@@ -1,0 +1,88 @@
+@import "@app/styles/global.scss";
+
+.button {
+  border-radius: 10px;
+  background: transparent;
+  cursor: pointer;
+  font-family: $raleway;
+  font-size: 20px;
+}
+
+.button:active:not(.button_disabled) {
+  transform: scale(0.98);
+  box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+}
+
+.button_disabled {
+  cursor: not-allowed;
+}
+
+.button__type_primary {
+  border: 1px solid transparent;
+  color: $mint;
+}
+
+.button__type_primary:hover:not(.button_disabled) {
+  border: 1px solid $mint;
+}
+
+.button__type_secondary {
+  border: 1px solid $mint;
+  color: $mint;
+}
+
+.button__type_secondary:hover:not(.button_disabled) {
+  background-color: $mint;
+  color: $blackBlue;
+}
+
+.button__type_tertiary {
+  color: $blackBlue;
+  background-color: $mint;
+  border: 1px solid transparent;
+}
+
+.button__type_tertiary:hover:not(.button_disabled) {
+  background-color: $blackBlue;
+  color: $mint;
+  border: 1px solid $mint;
+}
+
+.button.button__type_text {
+  border: none;
+  color: $white;
+  height: max-content;
+}
+
+.button__type_text:hover {
+  color: $mint;
+}
+
+.button__text-size {
+  &_xs {
+    font-size: 15px;
+  }
+
+  &_sm {
+    font-size: 20px;
+  }
+
+  &_md {
+    font-size: 24px;
+  }
+
+  &_lg {
+    font-size: 28px;
+  }
+}
+
+.button__size {
+  &_sm {
+    height: 47px;
+  }
+
+  &_lg {
+    height: 60px;
+  }
+}
+

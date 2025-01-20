@@ -1,0 +1,136 @@
+@import "@app/styles/global.scss";
+
+.restaurant-mini-card {
+  display: flex;
+  padding: 30px;
+  gap: 40px;
+  cursor: pointer;
+  height: 35vh;
+}
+
+.restaurant-mini-card:hover {
+  background-color: rgba(0, 0, 0, .2);
+  border-radius: 10px;
+}
+
+.restaurant-mini-card__image-container {
+  display: flex;
+  align-items: center;
+  width: 40%;
+}
+
+.restaurant-mini-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.restaurant-mini-card__image-empty-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.restaurant-mini-card__image-empty {
+  color: $white;
+  font-size: 60px;
+}
+
+.restaurant-mini-card__info-container {
+  display: grid;
+  grid-template-rows: 15% 85%;
+  gap: 10px;
+  width: 60%;
+}
+
+.restaurant-mini-card__name-container {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  width: 100%;
+  justify-content: center;
+  align-items: flex-start;
+  border-bottom: 1px solid $mint;
+}
+
+.restaurant-mini-card_loading .restaurant-mini-card__name-container {
+  border-bottom: none;
+}
+
+.restaurant-mini-card__name {
+  text-align: center;
+}
+
+.restaurant-mini-card__info {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  padding: 0 15px;
+  height: calc(100% - 10px);
+}
+
+.restaurant-mini-card__main-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  height: calc(100% - 10px);
+  width: 100%;
+}
+
+.restaurant-mini-card__main-info-item {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: center;
+}
+
+.restaurant-mini-card__info-value_rating {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.restaurant-mini-card__rating-icon {
+  padding-left: 5px;
+  color: $yellow;
+  height: 20px;
+}
+
+.restaurant-mini-card__rating-count {
+  display: flex;
+  flex-direction: row;
+  padding-left: 15px;
+}
+
+.restaurant-mini-card__rating-count_digit {
+  padding-right: 5px;
+}
+
+.restaurant-mini-card__work-mode {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 20px;
+  width: 100%;
+}
+
+.restaurant-mini-card__title {
+  color: $mint !important;
+  margin-bottom: 15px;
+}
+
+.restaurant-mini-card__work-mode-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.restaurant-mini-card__work-mode-content-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}

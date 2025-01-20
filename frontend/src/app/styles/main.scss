@@ -1,0 +1,16 @@
+@import "./global.scss";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#root {
+  min-height: 100vh;
+  background-color: $blackBlue;
+}
+
+.page {
+  max-width: 1920px;
+}

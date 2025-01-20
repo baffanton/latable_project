@@ -1,0 +1,22 @@
+@use "@shared/fonts/Abel/index.scss" as abel-style;
+@use "@shared/fonts/JuliusSansOne/index.scss" as juliusSansOne-style;
+@use "@shared/fonts/Raleway/index.scss" as raleway-style;
+@use "@shared/fonts/PlayfairDisplay/index.scss" as playfairDisplay-style;
+
+/* FONTS */
+
+$abel: "Abel";
+$raleway: "Raleway";
+$juliusSansOne: "Julius Sans One";
+$playfairDisplay: "Playfair Display";
+
+/* COLORS */
+
+$blackBlue: #18171C;
+$mint: #5CDB95;
+$white: #ffffff;
+$yellow: #FFFF00;
+$errorRed: #ff4d4f;
+$mintDark: rgba(92, 219, 149, .5);
+$blackLight: rgba(0, 0, 0, .5);
+$blackLightDark: rgba(0, 0, 0, .7);

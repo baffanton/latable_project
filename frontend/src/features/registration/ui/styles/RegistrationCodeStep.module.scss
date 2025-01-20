@@ -1,0 +1,39 @@
+@import "@app/styles/global.scss";
+
+.registration-code-step__message-container {
+  margin-bottom: 20px;
+}
+
+.registration-code-step__message {
+  text-align: center;
+}
+
+.registration-code-step__message_color {
+  color: $mint;
+}
+
+.registration-code-step__submit-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 30px 0 20px 0;
+}
+
+.registration-code-step__submit {
+  width: 250px;
+}
+
+.registration-code-step__send-again-container {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  justify-content: center;
+}
+
+.registration-code-step__send-again-text {
+  font-size: 16px;
+}
+
+.registration-code-step__send-again {
+  font-size: 16px;
+}

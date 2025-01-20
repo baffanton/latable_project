@@ -1,0 +1,15 @@
+.home-page {
+  height: calc(100vh - 70px);
+  display: flex;
+  align-items: center;
+  max-width: 1920px;
+}
+
+.home-page__container {
+  display: grid;
+  height: 100%;
+  align-items: center;
+  grid-template-columns: 15vw 15vw 18vw 15vw 15vw;
+  width: 100%;
+  justify-content: center;
+}
