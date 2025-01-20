@@ -1,0 +1,78 @@
+@import "@app/styles/global.scss";
+
+.ant-modal .ant-modal-content {
+  box-shadow: none;
+}
+
+.ant-modal .ant-modal-content {
+  background: $blackBlue;
+  padding: 30px 40px;
+}
+
+.ant-modal .ant-modal-header {
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.ant-modal .ant-modal-title, .ant-modal .ant-modal-confirm-title {
+  color: $white;
+  font-family: $raleway;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  cursor: default;
+}
+
+.ant-modal .ant-modal-title {
+  font-size: 35px;
+}
+
+.ant-mdaol .ant-modal-confirm-paragraph {
+  gap: 30px;
+}
+
+.ant-modal .ant-modal-confirm-title {
+  font-size: 30px;
+  color: $mint;
+}
+
+.ant-modal .ant-modal-confirm-content {
+  color: $white;
+  font-family: $raleway;
+}
+
+.ant-modal .ant-modal-close {
+  color: rgba(255, 255, 255, .3);
+}
+
+.ant-modal .ant-modal-close-x {
+  font-size: 20px;
+}
+
+.ant-modal-confirm-btns .ant-btn {
+  width: 100px;
+  font-size: 18px;
+  height: 40px;
+  border-radius: 10px;
+  font-family: $raleway;
+}
+
+.ant-modal-confirm-btns .ant-btn.ant-btn-default,
+.ant-modal-confirm-btns .ant-btn.ant-btn-primary
+{
+  background-color: transparent;
+  color: $mint;
+  border-color: $mint;
+}
+
+.ant-modal-confirm-btns .ant-btn.ant-btn-default:hover,
+.ant-modal-confirm-btns .ant-btn.ant-btn-default:active,
+.ant-modal-confirm-btns .ant-btn.ant-btn-primary:hover,
+.ant-modal-confirm-btns .ant-btn.ant-btn-primary:active
+{
+  background-color: $mint;
+  color: $blackBlue;
+  border-color: $blackBlue;
+}

@@ -1,0 +1,16 @@
+.login-modal_authorization :global(.ant-modal-content) {
+  min-height: 600px;
+}
+
+.login-modal_registration :global(.ant-modal-content),
+.login-modal_recovery-password :global(.ant-modal-content) {
+  min-height: 400px;
+}
+
+.login-modal_loading {
+  border-radius: 10px;
+}
+
+.login-modal {
+  max-width: 600px;
+}

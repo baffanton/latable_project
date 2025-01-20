@@ -1,0 +1,12 @@
+@import "@app/styles/global.scss";
+
+.favourite-icon {
+  cursor: pointer;
+  font-size: 30px;
+
+  color: $mint;
+}
+
+.favourite-icon_read-only {
+  cursor: default;
+}

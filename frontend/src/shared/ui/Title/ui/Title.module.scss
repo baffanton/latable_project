@@ -1,0 +1,46 @@
+@import "@app/styles/global.scss";
+
+.title {
+  cursor: default;
+  color: $white;
+}
+
+.title_pointer {
+  cursor: pointer;
+}
+
+.title__font {
+  &_abel {
+    font-family: $abel;
+  }
+
+  &_raleway {
+    font-family: $raleway;
+  }
+
+  &_julius-sans-one {
+    font-family: $juliusSansOne;
+  }
+
+  &_playfair-display {
+    font-family: $playfairDisplay;
+  }
+}
+
+.title__size {
+  &_xs {
+    font-size: 25px;
+  }
+
+  &_sm {
+    font-size: 35px;
+  }
+
+  &_md {
+    font-size: 40px;
+  }
+
+  &_lg {
+    font-size: 50px;
+  }
+}

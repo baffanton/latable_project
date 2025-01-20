@@ -1,0 +1,37 @@
+.authorization-form__forget-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-bottom: 40px;
+}
+
+.authorization-form__forget {
+  font-size: 16px;
+}
+
+.authorization-form__submit-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.authorization-form__submit {
+  width: 250px;
+}
+
+.authorization-form__footer {
+  display: flex;
+  margin-top: 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.authorization-form__create-text {
+  font-size: 16px;
+}
+
+.authorization-form__create-button {
+  font-size: 16px;
+}
