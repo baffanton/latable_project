@@ -1,0 +1,48 @@
+@use "@app/styles/global.scss" as global;
+
+.input {
+  border-radius: 10px;
+  background-color: transparent !important;
+  height: 60px;
+  color: global.$white;
+  font-size: 16px;
+  padding: 0 15px;
+  border-color: global.$white !important;
+}
+
+.input:hover, .input:active, .input:focus, .ant-input:hover, .ant-input:focus, .ant-input:active {
+  border-color: global.$mint !important;
+  background-color: transparent;
+  color: global.$mint;
+}
+
+.input::placeholder, .input .ant-input::placeholder {
+  color: rgba(255, 255, 255, .5);
+  font-size: 16px ;
+  font-family: global.$raleway;
+}
+
+.input .ant-input-password-icon {
+  color: white !important;
+  font-size: 20px;
+}
+
+.input:hover .ant-input-password-icon, .input:active .ant-input-password-icon {
+  color: global.$mint !important;
+}
+
+.ant-input-status-error {
+  border-color: global.$errorRed !important;
+}
+
+.ant-otp-input {
+  background-color: transparent;
+  height: 60px;
+  border-radius: 10px;
+  color: global.$white;
+}
+
+.ant-otp {
+  width: 100%;
+  gap: 32px;
+}

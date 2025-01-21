@@ -1,13 +1,13 @@
-@import "@app/styles/global.scss";
+@use "@app/styles/global.scss" as global;
 
 .ant-form-item .ant-form-item-label {
   padding-bottom: 5px !important;
-  color: $white;
+  color: global.$white;
 }
 
 .ant-form-item .ant-form-item-label > label {
-  color: $white;
-  font-family: $raleway;
+  color: global.$white;
+  font-family: global.$raleway;
   font-size: 16px;
 }
 

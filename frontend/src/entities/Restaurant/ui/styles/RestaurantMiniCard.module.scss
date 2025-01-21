@@ -1,4 +1,4 @@
-@import "@app/styles/global.scss";
+@use "@app/styles/global.scss" as global;
 
 .restaurant-mini-card {
   display: flex;
@@ -34,7 +34,7 @@
 }
 
 .restaurant-mini-card__image-empty {
-  color: $white;
+  color: global.$white;
   font-size: 60px;
 }
 
@@ -52,7 +52,7 @@
   width: 100%;
   justify-content: center;
   align-items: flex-start;
-  border-bottom: 1px solid $mint;
+  border-bottom: 1px solid global.$mint;
 }
 
 .restaurant-mini-card_loading .restaurant-mini-card__name-container {
@@ -94,7 +94,7 @@
 
 .restaurant-mini-card__rating-icon {
   padding-left: 5px;
-  color: $yellow;
+  color: global.$yellow;
   height: 20px;
 }
 
@@ -118,7 +118,7 @@
 }
 
 .restaurant-mini-card__title {
-  color: $mint !important;
+  color: global.$mint !important;
   margin-bottom: 15px;
 }
 

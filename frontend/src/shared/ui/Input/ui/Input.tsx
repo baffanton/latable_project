@@ -1,25 +1,19 @@
 import { Input as AntdInput, InputProps as AntdInputProps } from "antd";
 import { InputTypes } from "../model/Input.types";
 import { FC } from "react";
-import { Skeleton } from "@shared/ui/Skeleton";
 import cn from "classnames";
-import s from "./Input.module.scss";
+import "./Input.scss";
 import { OTPProps } from "antd/es/input/OTP";
 import { PasswordProps } from "antd/es/input";
 
 interface InputProps extends Omit<AntdInputProps, "type" | "size" | "onKeyDown"> {
   type?: InputTypes;
-  isLoading?: boolean;
   onKeyDown?: (event: KeyboardEvent) => void;
   length?: number;
 }
 
-const Input: FC<InputProps> = ({ type = "text", isLoading = false, onKeyDown, length, className, ...props }) => {
-  if (isLoading) {
-    return <Skeleton />;
-  }
-
-  const classNames = cn(s["input"], s[`input__type_${type}`], className);
+const Input: FC<InputProps> = ({ type = "text", onKeyDown, length, className, ...props }) => {
+  const classNames = cn("input", `input__type_${type}`, className);
 
   if (type === "password") {
     return <AntdInput.Password className={classNames} {...(props as PasswordProps)} />;

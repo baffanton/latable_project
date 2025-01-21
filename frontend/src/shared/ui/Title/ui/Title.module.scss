@@ -1,8 +1,8 @@
-@import "@app/styles/global.scss";
+@use "@app/styles/global.scss" as global;
 
 .title {
   cursor: default;
-  color: $white;
+  color: global.$white;
 }
 
 .title_pointer {
@@ -11,19 +11,19 @@
 
 .title__font {
   &_abel {
-    font-family: $abel;
+    font-family: global.$abel;
   }
 
   &_raleway {
-    font-family: $raleway;
+    font-family: global.$raleway;
   }
 
   &_julius-sans-one {
-    font-family: $juliusSansOne;
+    font-family: global.$juliusSansOne;
   }
 
   &_playfair-display {
-    font-family: $playfairDisplay;
+    font-family: global.$playfairDisplay;
   }
 }
 

@@ -1,6 +1,6 @@
 import { Spin as AntdSpin, SpinProps as AntdSpinProps } from "antd";
 import { FC } from "react";
-import s from "./Spin.module.scss";
+import "./Spin.scss";
 import cn from "classnames";
 
 interface SpinProps extends AntdSpinProps {
@@ -9,7 +9,7 @@ interface SpinProps extends AntdSpinProps {
 }
 
 const Spin: FC<SpinProps> = ({ classNameContainer = "", transparent = false, ...props }) => (
-  <div className={cn(s["spin__container"], s["spin__container_transparent"], classNameContainer)}>
+  <div className={cn("spin__container", "spin__container_transparent", classNameContainer)}>
     <AntdSpin delay={200} {...props} />
   </div>
 );

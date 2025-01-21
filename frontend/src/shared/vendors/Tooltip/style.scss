@@ -1,13 +1,13 @@
-@import "@app/styles/global.scss";
+@use "@app/styles/global.scss" as global;
 
 .ant-tooltip .ant-tooltip-arrow::before {
-  background: $mintDark;
+  background: global.$mintDark;
 }
 
 .ant-tooltip .ant-tooltip-inner {
-  color: $white;
-  background-color: $mintDark;
-  font-family: $raleway;
+  color: global.$white;
+  background-color: global.$mintDark;
+  font-family: global.$raleway;
   font-size: 15px;
   padding: 10px;
 }

@@ -1,7 +1,7 @@
-@import "@app/styles/global.scss";
+@use "@app/styles/global.scss" as global;
 
 .text {
-  color: $white;
+  color: global.$white;
   cursor: default;
 }
 
@@ -11,19 +11,19 @@
 
 .text__font {
   &_raleway {
-    font-family: $raleway;
+    font-family: global.$raleway;
   }
 
   &_abel {
-    font-family: $abel;
+    font-family: global.$abel;
   }
 
   &_playfair-display {
-    font-family: $playfairDisplay;
+    font-family: global.$playfairDisplay;
   }
 
   &_julius-sans-one {
-    font-family: $juliusSansOne;
+    font-family: global.$juliusSansOne;
   }
 }
 

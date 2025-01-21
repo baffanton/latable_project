@@ -1,13 +1,11 @@
 import { FC, ReactNode } from "react";
 import cn from "classnames";
-import { Skeleton } from "@shared/ui/Skeleton";
 import "./Button.scss";
 import { ButtonSizeTypes, ButtonTypes } from "../model/Button.types";
 import { TextSizeTypes } from "@shared/ui/Text/model/Text.types";
 
 interface ButtonProps {
   children: ReactNode;
-  isLoading?: boolean;
   size?: ButtonSizeTypes;
   type?: ButtonTypes;
   disabled?: boolean;
@@ -19,7 +17,6 @@ interface ButtonProps {
 
 const Button: FC<ButtonProps> = ({
   children,
-  isLoading = false,
   className = "",
   size = "sm",
   type = "primary",
@@ -28,10 +25,6 @@ const Button: FC<ButtonProps> = ({
   htmlType,
   textSize = "sm",
 }) => {
-  if (isLoading) {
-    return <Skeleton type="button" />;
-  }
-
   const onClickHandler = () => {
     !disabled && onClick?.();
   };
