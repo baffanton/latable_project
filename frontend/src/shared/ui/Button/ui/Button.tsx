@@ -1,7 +1,7 @@
 import { FC, ReactNode } from "react";
 import cn from "classnames";
 import { Skeleton } from "@shared/ui/Skeleton";
-import s from "./Button.module.scss";
+import "./Button.scss";
 import { ButtonSizeTypes, ButtonTypes } from "../model/Button.types";
 import { TextSizeTypes } from "@shared/ui/Text/model/Text.types";
 
@@ -39,11 +39,11 @@ const Button: FC<ButtonProps> = ({
   return (
     <button
       className={cn(
-        s["button"],
-        s[`button__size_${size}`],
-        s[`button__type_${type}`],
-        s[`button__text-size_${textSize}`],
-        disabled && s["button_disabled"],
+        "button",
+        `button__size_${size}`,
+        `button__type_${type}`,
+        `button__text-size_${textSize}`,
+        disabled && "button_disabled",
         className,
       )}
       onClick={onClickHandler}

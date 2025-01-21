@@ -15,6 +15,7 @@
 
 .button_disabled {
   cursor: not-allowed;
+  filter: brightness(0.5);
 }
 
 .button__type_primary {
