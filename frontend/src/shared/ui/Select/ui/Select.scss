@@ -1,0 +1,107 @@
+@use "@app/styles/global.scss" as global;
+
+.select {
+  height: 47px;
+}
+
+.select__size_md {
+  height: 47px;
+}
+
+.select__size_lg {
+  height: 60px;
+}
+
+.select:hover, .select:focus {
+  :global(.ant-select-arrow) {
+    color: global.$mint !important;
+  }
+
+  :global(.ant-select-selection-item) {
+    color: global.$mint !important;
+  }
+}
+
+.select .ant-select-selector {
+  background: transparent !important;
+  border: 1px solid global.$white !important;
+  border-radius: 10px !important;
+  padding: 0 15px !important;
+}
+
+.select .ant-select-selector:hover, .select .ant-select-selector:focus {
+  background: transparent;
+  border-color: global.$mint !important;
+  color: global.$mint;
+}
+
+.select .ant-select-selection-placeholder {
+  color: rgba(255, 255, 255, .5);
+  font-size: 16px;
+  font-family: global.$raleway;
+  text-align: left;
+}
+
+.select .ant-select-arrow {
+  color: global.$white;
+  font-size: 16px;
+}
+
+.ant-select-selection-item {
+  color: global.$white;
+  font-size: 16px;
+  text-align: left;
+}
+
+.ant-select-dropdown {
+  background: global.$blackBlue;
+  border: 1px solid global.$mint;
+  padding: 10px;
+}
+
+.ant-select-item {
+  height: 40px;
+  align-items: center;
+  padding: 5px 15px;
+}
+
+.ant-select-item-option-content {
+  font-size: 16px;
+  color: global.$white;
+  font-weight: 400 !important;
+}
+
+.ant-select-item-option:hover {
+  background: rgba(255, 255, 255, .5) !important;
+
+  :global(.ant-select-item-option-content):hover {
+    color: global.$blackBlue !important;
+  }
+}
+
+.ant-select-item-option-selected {
+  background: rgb(92, 219, 149, .5) !important;
+  color: global.$blackBlue !important;
+}
+
+.rc-virtual-list-holder-inner {
+  gap: 5px;
+}
+
+.ant-select-selection-search-input {
+  color: global.$white !important;
+  font-size: 16px;
+}
+
+.ant-select-selection-search {
+  padding-left: 0 !important;
+  inset-inline-start: 0 !important;
+  inset-inline-end: 0 !important;
+  padding: 0 15px;
+}
+
+.ant-select-dropdown .ant-empty-description {
+  color: global.$mint;
+  font-family: global.$raleway;
+  font-size: 16px;
+}

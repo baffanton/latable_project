@@ -1,10 +1,10 @@
-@import "@app/styles/global.scss";
+@use "@app/styles/global.scss" as global;
 
 .button {
   border-radius: 10px;
   background: transparent;
   cursor: pointer;
-  font-family: $raleway;
+  font-family: global.$raleway;
   font-size: 20px;
 }
 
@@ -20,43 +20,43 @@
 
 .button__type_primary {
   border: 1px solid transparent;
-  color: $mint;
+  color: global.$mint;
 }
 
 .button__type_primary:hover:not(.button_disabled) {
-  border: 1px solid $mint;
+  border: 1px solid global.$mint;
 }
 
 .button__type_secondary {
-  border: 1px solid $mint;
-  color: $mint;
+  border: 1px solid global.$mint;
+  color: global.$mint;
 }
 
 .button__type_secondary:hover:not(.button_disabled) {
-  background-color: $mint;
-  color: $blackBlue;
+  background-color: global.$mint;
+  color: global.$blackBlue;
 }
 
 .button__type_tertiary {
-  color: $blackBlue;
-  background-color: $mint;
+  color: global.$blackBlue;
+  background-color: global.$mint;
   border: 1px solid transparent;
 }
 
 .button__type_tertiary:hover:not(.button_disabled) {
-  background-color: $blackBlue;
-  color: $mint;
-  border: 1px solid $mint;
+  background-color: global.$blackBlue;
+  color: global.$mint;
+  border: 1px solid global.$mint;
 }
 
 .button.button__type_text {
   border: none;
-  color: $white;
+  color: global.$white;
   height: max-content;
 }
 
 .button__type_text:hover {
-  color: $mint;
+  color: global.$mint;
 }
 
 .button__text-size {

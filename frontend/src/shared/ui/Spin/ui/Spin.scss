@@ -1,7 +1,7 @@
-@import "@app/styles/global.scss";
+@use "@app/styles/global.scss" as global;
 
-:global(.ant-spin-dot) {
-  color: $mint !important;
+.ant-spin-dot {
+  color: global.$mint !important;
 }
 
 .spin__container {

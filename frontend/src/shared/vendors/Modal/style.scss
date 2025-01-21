@@ -1,11 +1,11 @@
-@import "@app/styles/global.scss";
+@use "@app/styles/global.scss" as global;
 
 .ant-modal .ant-modal-content {
   box-shadow: none;
 }
 
 .ant-modal .ant-modal-content {
-  background: $blackBlue;
+  background: global.$blackBlue;
   padding: 30px 40px;
 }
 
@@ -17,8 +17,8 @@
 }
 
 .ant-modal .ant-modal-title, .ant-modal .ant-modal-confirm-title {
-  color: $white;
-  font-family: $raleway;
+  color: global.$white;
+  font-family: global.$raleway;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
@@ -35,12 +35,12 @@
 
 .ant-modal .ant-modal-confirm-title {
   font-size: 30px;
-  color: $mint;
+  color: global.$mint;
 }
 
 .ant-modal .ant-modal-confirm-content {
-  color: $white;
-  font-family: $raleway;
+  color: global.$white;
+  font-family: global.$raleway;
 }
 
 .ant-modal .ant-modal-close {
@@ -56,15 +56,15 @@
   font-size: 18px;
   height: 40px;
   border-radius: 10px;
-  font-family: $raleway;
+  font-family: global.$raleway;
 }
 
 .ant-modal-confirm-btns .ant-btn.ant-btn-default,
 .ant-modal-confirm-btns .ant-btn.ant-btn-primary
 {
   background-color: transparent;
-  color: $mint;
-  border-color: $mint;
+  color: global.$mint;
+  border-color: global.$mint;
 }
 
 .ant-modal-confirm-btns .ant-btn.ant-btn-default:hover,
@@ -72,7 +72,7 @@
 .ant-modal-confirm-btns .ant-btn.ant-btn-primary:hover,
 .ant-modal-confirm-btns .ant-btn.ant-btn-primary:active
 {
-  background-color: $mint;
-  color: $blackBlue;
-  border-color: $blackBlue;
+  background-color: global.$mint;
+  color: global.$blackBlue;
+  border-color: global.$blackBlue;
 }
