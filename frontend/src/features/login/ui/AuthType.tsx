@@ -3,8 +3,7 @@ import { FC, useState } from "react";
 import useFormInstance from "antd/es/form/hooks/useFormInstance";
 import s from "./styles/AuthType.module.scss";
 import { Button } from "@shared/ui/Button";
-import { Tooltip } from "@shared/ui/Tooltip";
-import { Form } from "antd";
+import { Form, Tooltip } from "antd";
 import { emailValidator } from "@shared/validate/emailValidator";
 import { Input } from "@shared/ui/Input";
 
@@ -44,15 +43,17 @@ const AuthType: FC<AuthTypeProps> = ({ emailName }) => {
         >
           Почта
         </Button>
-        <Tooltip title="В разработке">
-          <Button
-            className={s["auth-type__action-button"]}
-            type={authType === "phone" ? "tertiary" : "secondary"}
-            onClick={() => onChangeAuthTypeHandler("phone")}
-            disabled
-          >
-            Телефон
-          </Button>
+        <Tooltip title="Не доступно. В разработке">
+          <div className={s["auth-type__disabled-button-container"]}>
+            <Button
+              className={s["auth-type__action-button"]}
+              type={authType === "phone" ? "tertiary" : "secondary"}
+              onClick={() => onChangeAuthTypeHandler("phone")}
+              disabled
+            >
+              Телефон
+            </Button>
+          </div>
         </Tooltip>
       </div>
       <Form.Item

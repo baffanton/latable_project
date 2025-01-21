@@ -10,6 +10,7 @@ import { Image } from "@shared/ui/Image/index";
 import { FavouriteIcon } from "@features/restaurant/ui/FavouriteIcon";
 import { Text } from "@shared/ui/Text/index";
 import { Title } from "@shared/ui/Title";
+import { determineEndingByQuantity } from "../lib/determineEndingByQuantity";
 
 interface RestaurantMiniCardProps {
   restaurantInfo: RestaurantModel;
@@ -27,13 +28,13 @@ const RestaurantMiniCard: FC<RestaurantMiniCardProps> = ({ restaurantInfo }) => 
       id: "phone",
       title: "Телефон:",
       isNumber: true,
-      value: prettifyPhoneNumber(phoneNumber[0]),
+      value: prettifyPhoneNumber(phoneNumber),
     },
     {
       id: "adress",
       title: "Адрес:",
       isNumber: false,
-      value: address[0],
+      value: address,
     },
     {
       id: "cuisine",
@@ -80,7 +81,6 @@ const RestaurantMiniCard: FC<RestaurantMiniCardProps> = ({ restaurantInfo }) => 
                 </Text>
                 <Text
                   font={item.isNumber ? "abel" : "playfair-display"}
-                  size={item.isNumber ? "sm" : "xs"}
                   className={cn(
                     s["restaurant-mini-card__info-value"],
                     item.isNumber && s["restaurant-mini-card__info-value_number"],
@@ -100,7 +100,8 @@ const RestaurantMiniCard: FC<RestaurantMiniCardProps> = ({ restaurantInfo }) => 
                 </Text>
                 <StarFilled className={s["restaurant-mini-card__rating-icon"]} />
                 <Text size="xs" className={s["restaurant-mini-card__rating-count"]}>
-                  (<div className={s["restaurant-mini-card__rating-count_digit"]}>{rating.reviewCount}</div>оценок)
+                  (<div className={s["restaurant-mini-card__rating-count_digit"]}>{rating.reviewCount}</div>
+                  {determineEndingByQuantity(rating.reviewCount)})
                 </Text>
               </div>
             </div>

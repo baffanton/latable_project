@@ -19,9 +19,9 @@ export type CuisineTypes =
 export interface RestaurantModel {
   id: number;
   name: string;
-  address: string[];
+  address: string;
   image: string[] | null;
-  phoneNumber: string[];
+  phoneNumber: string;
   district: DistrictTypes;
   establishmentType: EstablishmentTypes;
   rating: RestaurantRatingModel;
