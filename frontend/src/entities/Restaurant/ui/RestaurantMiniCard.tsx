@@ -1,25 +1,25 @@
-import { FC, useContext } from "react";
+import { FC } from "react";
 import { RestaurantModel } from "../model/types";
 import { useNavigate } from "react-router-dom";
-import { UserContext } from "@shared/context/UserContext";
 import s from "./styles/RestaurantMiniCard.module.scss";
 import cn from "classnames";
 import { RobotOutlined, StarFilled } from "@ant-design/icons";
 import { prettifyPhoneNumber } from "../lib/prettifyPhoneNumber";
 import { Image } from "@shared/ui/Image/index";
-import { FavouriteIcon } from "@features/restaurant/ui/FavouriteIcon";
+import FavouriteIcon from "@features/restaurant/ui/FavouriteIcon";
 import { Text } from "@shared/ui/Text/index";
 import { Title } from "@shared/ui/Title";
 import { determineEndingByQuantity } from "../lib/determineEndingByQuantity";
+import userStore from "@app/stores/UserStore";
+import { observer } from "mobx-react-lite";
 
 interface RestaurantMiniCardProps {
   restaurantInfo: RestaurantModel;
+  isAddedToFavourite: boolean;
 }
 
-const RestaurantMiniCard: FC<RestaurantMiniCardProps> = ({ restaurantInfo }) => {
+const RestaurantMiniCard: FC<RestaurantMiniCardProps> = ({ restaurantInfo, isAddedToFavourite }) => {
   const navigate = useNavigate();
-
-  const { isAuth } = useContext(UserContext);
 
   const { id, image, address, phoneNumber, cuisine, averageCheck, rating, workMode, name } = restaurantInfo;
 
@@ -70,7 +70,7 @@ const RestaurantMiniCard: FC<RestaurantMiniCardProps> = ({ restaurantInfo }) => 
           <Title font="julius-sans-one" size="xs" className={s["restaurant-mini-card__name"]}>
             {name}
           </Title>
-          {isAuth && <FavouriteIcon restaurantId={id} />}
+          {userStore.isAuth && <FavouriteIcon restaurantId={id} isAddedToFavourite={isAddedToFavourite} />}
         </div>
         <div className={s["restaurant-mini-card__info"]}>
           <div className={s["restaurant-mini-card__main-info"]}>
@@ -128,4 +128,4 @@ const RestaurantMiniCard: FC<RestaurantMiniCardProps> = ({ restaurantInfo }) => 
   );
 };
 
-export { RestaurantMiniCard };
+export default observer(RestaurantMiniCard);

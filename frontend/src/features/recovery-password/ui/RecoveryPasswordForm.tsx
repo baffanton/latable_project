@@ -3,7 +3,7 @@ import { validateMessages } from "@shared/validate/validateMessages";
 import { Form } from "antd";
 import { FC, useState } from "react";
 import { RecoveryPasswordFormStepTypes } from "../model/types";
-import { RecoveryPasswordFormAuthInfoStep } from "./RecoveryPasswordFormAuthInfoStep";
+import RecoveryPasswordFormAuthInfoStep from "./RecoveryPasswordFormAuthInfoStep";
 import RecoveryPasswordFormCodeStep from "./RecoveryPasswordFormCodeStep";
 import RecoveryPasswordChangePasswordStep from "./RecoveryPasswordChangePasswordStep";
 import SuccessStep from "@shared/ui/SuccessStep/ui/SuccessStep";

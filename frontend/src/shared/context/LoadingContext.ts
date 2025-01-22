@@ -1,4 +1,4 @@
-import { LoadingContextModel } from "@shared/types/LoadingContextModel";
+import { LoadingContextModel } from "@app/providers/LoadingProvider/model/types";
 import { createContext } from "react";
 
 export const LoadingContext = createContext<LoadingContextModel>({

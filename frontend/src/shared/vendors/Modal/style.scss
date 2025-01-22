@@ -76,3 +76,7 @@
   color: global.$blackBlue;
   border-color: global.$blackBlue;
 }
+
+.ant-modal-confirm-btns .ant-btn {
+  box-shadow: none;
+}

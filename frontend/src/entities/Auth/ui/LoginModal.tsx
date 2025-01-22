@@ -1,11 +1,11 @@
-import { FC, lazy, Suspense, useState } from "react";
+import { FC, lazy, Suspense, useContext, useState } from "react";
 import s from "./LoginModal.module.scss";
 import { Modal } from "@shared/ui/Modal";
 import { Spin } from "@shared/ui/Spin";
 import { LoginModalTypes } from "../model/types";
-import { LoadingContext } from "../model/LoadingContext";
 import AuthorizationForm from "@features/login/ui/AuthorizationForm";
 import cn from "classnames";
+import { LoadingContext } from "@shared/context/LoadingContext";
 
 const RegistrationForm = lazy(() => import("@features/registration/ui/RegistrationForm"));
 const RecoveryPasswordForm = lazy(() => import("@features/recovery-password/ui/RecoveryPasswordForm"));
@@ -29,7 +29,8 @@ interface LoginModalProps {
 
 const LoginModal: FC<LoginModalProps> = ({ setIsShowModal }) => {
   const [loginModalType, setLoginModalType] = useState<LoginModalTypes>("authorization");
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const { isLoading } = useContext(LoadingContext);
 
   const onCloseModalHandler = () => {
     setLoginModalType("authorization");
@@ -37,32 +38,30 @@ const LoginModal: FC<LoginModalProps> = ({ setIsShowModal }) => {
   };
 
   return (
-    <LoadingContext.Provider value={{ isLoading: isLoading, setIsLoading: setIsLoading }}>
-      <Modal
-        open
-        title={getTitleByLoginModalType(loginModalType)}
-        footer={null}
-        onCancel={onCloseModalHandler}
-        className={cn(s["login-modal"], s[`login-modal_${loginModalType}`])}
-        destroyOnClose
-        centered
-      >
-        {isLoading && <Spin size="large" />}
-        {loginModalType === "authorization" && (
-          <AuthorizationForm setIsShowModal={setIsShowModal} setLoginModalType={setLoginModalType} />
-        )}
-        {loginModalType === "registration" && (
-          <Suspense fallback={<Spin transparent classNameContainer={s["login-modal_loading"]} size="large" />}>
-            <RegistrationForm setIsShowModal={setIsShowModal} setLoginModalType={setLoginModalType} />
-          </Suspense>
-        )}
-        {loginModalType === "recovery-password" && (
-          <Suspense fallback={<Spin transparent classNameContainer={s["login-modal_loading"]} size="large" />}>
-            <RecoveryPasswordForm setLoginModalType={setLoginModalType} />
-          </Suspense>
-        )}
-      </Modal>
-    </LoadingContext.Provider>
+    <Modal
+      open
+      title={getTitleByLoginModalType(loginModalType)}
+      footer={null}
+      onCancel={onCloseModalHandler}
+      className={cn(s["login-modal"], s[`login-modal_${loginModalType}`])}
+      destroyOnClose
+      centered
+    >
+      {isLoading && <Spin size="large" />}
+      {loginModalType === "authorization" && (
+        <AuthorizationForm setIsShowModal={setIsShowModal} setLoginModalType={setLoginModalType} />
+      )}
+      {loginModalType === "registration" && (
+        <Suspense fallback={<Spin transparent classNameContainer={s["login-modal_loading"]} size="large" />}>
+          <RegistrationForm setIsShowModal={setIsShowModal} setLoginModalType={setLoginModalType} />
+        </Suspense>
+      )}
+      {loginModalType === "recovery-password" && (
+        <Suspense fallback={<Spin transparent classNameContainer={s["login-modal_loading"]} size="large" />}>
+          <RecoveryPasswordForm setLoginModalType={setLoginModalType} />
+        </Suspense>
+      )}
+    </Modal>
   );
 };
 

@@ -1,5 +1,4 @@
 const UserModel = require("../models/UserModel");
-const bcrypt = require("bcrypt");
 const uuid = require("uuid");
 const mailService = require("./mailService");
 const tokenService = require("./tokenService");
@@ -13,19 +12,11 @@ const generateRandomCode = () => {
   return String(Math.floor(Math.random() * (max - min + 1)) + min);
 };
 
-const DEFAULT_PASSWORD_SALT = 3;
-
 class UserService {
-  async generateHashPassword(password, salt) {
-    return await bcrypt.hash(password, salt || DEFAULT_PASSWORD_SALT);
-  }
-
   async registrationAuthInfoStep(email, password) {
     const candidate = await UserModel.findOne({
       where: { email },
     });
-
-    console.log(candidate);
 
     // TODO: Переделать дату
     if (candidate) {
@@ -41,14 +32,13 @@ class UserService {
       await candidate.destroy();
     }
 
-    const hashPassword = await bcrypt.hash(password, 3);
     const regCode = generateRandomCode();
     const userId = uuid.v4();
 
     const newUser = await UserModel.create({
       id: userId,
       email,
-      password: hashPassword,
+      password,
       code: regCode,
     });
 
@@ -95,14 +85,12 @@ class UserService {
 
     if (!user) {
       throw new BadRequest(
-        "Пользователь с таким электронным адресом не существует"
+        "Пользователь с таким электронным адресом не существует!"
       );
     }
 
-    const isPassEquals = await bcrypt.compare(password, user.password);
-
-    if (!isPassEquals) {
-      throw new BadRequest("Введены не верные данные. Попробуйте ещё раз!");
+    if (user.password !== password) {
+      throw new BadRequest("Введене неверные данные. Попробуйте снова!");
     }
 
     const tokens = tokenService.generateTokens({ id: user.id, email });

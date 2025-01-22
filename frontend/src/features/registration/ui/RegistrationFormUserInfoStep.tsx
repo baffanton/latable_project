@@ -1,8 +1,6 @@
 import { FC, useContext, useEffect, useState } from "react";
 import { Option } from "@shared/types/Option";
 import useFormInstance from "antd/es/form/hooks/useFormInstance";
-import { UserContext } from "@shared/context/UserContext";
-import { LoadingContext } from "@entities/Auth/model/LoadingContext";
 import { getAgeDictionary, getGenderDictionary } from "@entities/User/api/endpoints";
 import { Form } from "antd";
 import { Input } from "@shared/ui/Input";
@@ -16,6 +14,9 @@ import {
   RegistrationFormUserInfoStepModel,
   RegistrationFormUserInfoStepNames,
 } from "../model/types";
+import userStore from "@app/stores/UserStore";
+import { observer } from "mobx-react-lite";
+import { LoadingContext } from "@shared/context/LoadingContext";
 
 interface RegistrationFormUserInfoStepProps {
   userId: string | null;
@@ -28,7 +29,6 @@ const RegistrationFormUserInfoStep: FC<RegistrationFormUserInfoStepProps> = ({ u
 
   const form = useFormInstance();
 
-  const userStore = useContext(UserContext);
   const { setIsLoading } = useContext(LoadingContext);
 
   useEffect(() => {
@@ -103,4 +103,4 @@ const RegistrationFormUserInfoStep: FC<RegistrationFormUserInfoStepProps> = ({ u
   );
 };
 
-export default RegistrationFormUserInfoStep;
+export default observer(RegistrationFormUserInfoStep);

@@ -30,4 +30,4 @@ const HomePage: FC = () => {
   );
 };
 
-export { HomePage };
+export default HomePage;

@@ -1,4 +1,3 @@
-import { UserContext } from "@shared/context/UserContext";
 import { Form } from "antd";
 import { FC, useContext } from "react";
 import { Input } from "@shared/ui/Input";
@@ -7,8 +6,9 @@ import { validateMessages } from "@shared/validate/validateMessages";
 import s from "./styles/AuthorizationForm.module.scss";
 import { AuthType } from "./AuthType";
 import { LoginModalTypes } from "@entities/Auth/model/types";
-import { LoadingContext } from "@entities/Auth/model/LoadingContext";
 import { FormFooter } from "../../../shared/ui/FormFooter/ui/FormFooter";
+import userStore from "@app/stores/UserStore";
+import { LoadingContext } from "@shared/context/LoadingContext";
 
 enum AuthorizationFormNames {
   email = "email",
@@ -30,7 +30,6 @@ interface AuthorizationFormProps {
 const AuthorizationForm: FC<AuthorizationFormProps> = ({ setIsShowModal, setLoginModalType }) => {
   const [form] = Form.useForm();
 
-  const userStore = useContext(UserContext);
   const { setIsLoading } = useContext(LoadingContext);
 
   const onFinishAuth = (values: AuthorizationFormModel) => {

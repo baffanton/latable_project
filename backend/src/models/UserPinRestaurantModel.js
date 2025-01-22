@@ -3,8 +3,8 @@ const db = require("../config/database");
 const UserModel = require("./UserModel");
 const RestaurantModel = require("./RestaurantModel");
 
-const PinnedRestaurantModel = db.define(
-  "pinned_restaurant",
+const UserPinRestaurantModel = db.define(
+  "user_pin_restaurant",
   {
     id: {
       primaryKey: true,
@@ -35,4 +35,4 @@ const PinnedRestaurantModel = db.define(
   }
 );
 
-module.exports = PinnedRestaurantModel;
+module.exports = UserPinRestaurantModel;

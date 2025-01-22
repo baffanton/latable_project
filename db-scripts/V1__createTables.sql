@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS "restaurant" (
 	"average_check" int NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS "pinned_restaurant" (
+CREATE TABLE IF NOT EXISTS "user_pin_restaurant" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"user_id" VARCHAR(255) NOT NULL REFERENCES "user" ("id"),
 	"restaurant_id" int NOT NULL REFERENCES "restaurant" ("id")

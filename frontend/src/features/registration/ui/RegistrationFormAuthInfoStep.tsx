@@ -1,11 +1,9 @@
 import useFormInstance from "antd/es/form/hooks/useFormInstance";
 import { FC, useContext } from "react";
-import { UserContext } from "@shared/context/UserContext";
 import { Form } from "antd";
 import { Input } from "@shared/ui/Input";
 import { Button } from "@shared/ui/Button";
 import { observer } from "mobx-react-lite";
-import { LoadingContext } from "@entities/Auth/model/LoadingContext";
 import s from "./styles/RegistrationFormAuthInfoStep.module.scss";
 import { FormFooter } from "@shared/ui/FormFooter/ui/FormFooter";
 import { LoginModalTypes } from "@entities/Auth/model/types";
@@ -17,6 +15,8 @@ import {
 } from "../model/types";
 import { AuthType } from "@features/login/ui/AuthType";
 import { equalPasswordRule } from "../lib/equalPasswordRule";
+import userStore from "@app/stores/UserStore";
+import { LoadingContext } from "@shared/context/LoadingContext";
 
 interface RegistrationFormAuthInfoStepProps {
   setCurrentStep: (newStep: RegistrationFormStepTypes) => void;
@@ -29,7 +29,6 @@ const RegistrationFormAuthInfoStep: FC<RegistrationFormAuthInfoStepProps> = ({
   setUserId,
   setLoginModalType,
 }) => {
-  const userStore = useContext(UserContext);
   const { setIsLoading } = useContext(LoadingContext);
 
   const form = useFormInstance();

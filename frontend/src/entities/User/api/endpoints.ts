@@ -2,6 +2,8 @@ import $apiInstance from "@app/api/axiosInstance";
 import { Option } from "@shared/types/Option";
 import {
   AddPinnedRestaurantRequestModel,
+  CheckPinnedRestaurantListRequestModel,
+  CheckPinnedRestaurantListResponseModel,
   CheckPinnedRestaurantRequestModel,
   CheckPinnedRestaurantResponseModel,
   RemovePinnedRestaurantRequestModel,
@@ -19,3 +21,6 @@ export const removePinnedRestaurant = (params: RemovePinnedRestaurantRequestMode
 
 export const checkPinnedRestaurant = (params: CheckPinnedRestaurantRequestModel) =>
   $apiInstance.post<CheckPinnedRestaurantResponseModel>("/user/check-pin", params);
+
+export const checkPinnedRestaurantList = (params: CheckPinnedRestaurantListRequestModel) =>
+  $apiInstance.post<CheckPinnedRestaurantListResponseModel>("/user/check-pin-list", params);

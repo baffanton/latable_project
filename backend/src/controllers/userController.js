@@ -1,6 +1,7 @@
-const PinnedRestaurantModel = require("../models/PinnedRestaurantModel");
 const userService = require("../services/userService");
 const SUCCESS_CODE = require("../shared/constants");
+const UserPinRestaurantModel = require("../models/UserPinRestaurantModel");
+const { Op } = require("sequelize");
 
 class UserController {
   //
@@ -187,7 +188,7 @@ class UserController {
     try {
       const { userId, restaurantId } = req.body;
 
-      await PinnedRestaurantModel.create({
+      await UserPinRestaurantModel.create({
         user_id: userId,
         restaurant_id: restaurantId,
       });
@@ -203,21 +204,21 @@ class UserController {
     try {
       const { userId, restaurantId } = req.body;
 
-      const findedReview = await PinnedRestaurantModel.findAll({
+      const findedPin = await UserPinRestaurantModel.findOne({
         where: {
           user_id: userId,
           restaurant_id: restaurantId,
         },
       });
 
-      if (!findedReview) {
+      if (!findedPin) {
         res.sendStatus(400);
         return;
       }
 
-      await findedReview.destroy();
+      await findedPin.destroy();
 
-      res.status(SUCCESS_CODE);
+      res.sendStatus(SUCCESS_CODE);
     } catch (e) {
       next(e);
     }
@@ -228,16 +229,41 @@ class UserController {
     try {
       const { userId, restaurantId } = req.body;
 
-      const findedReview = await PinnedRestaurantModel.findOne({
+      const findedPin = await UserPinRestaurantModel.findOne({
         where: {
           user_id: userId,
           restaurant_id: restaurantId,
         },
       });
 
-      console.log(findedReview);
+      res.status(SUCCESS_CODE).json({ data: !!findedPin });
+    } catch (e) {
+      next(e);
+    }
+  }
 
-      res.status(SUCCESS_CODE).json({ data: !!findedReview });
+  // Ресторан. Проверка есть ли в избранных массив ресторанов
+  async checkPinnedList(req, res, next) {
+    try {
+      const { userId, restaurantIds } = req.body;
+
+      const findedPins = await UserPinRestaurantModel.findAll({
+        where: {
+          user_id: userId,
+          restaurant_id: {
+            [Op.or]: restaurantIds,
+          },
+        },
+      });
+
+      const mappedRestaurants = restaurantIds.map((restId) => ({
+        id: restId,
+        pinned: !!findedPins.find(
+          (pin) => pin.dataValues.restaurant_id === restId
+        ),
+      }));
+
+      res.status(SUCCESS_CODE).json({ data: mappedRestaurants });
     } catch (e) {
       next(e);
     }
