@@ -91,36 +91,6 @@ class RestaurantController {
     }
   }
 
-  async searchRestaurantsByName(req, res, next) {
-    try {
-      const { searchValue } = req.body;
-
-      const restaurantList = await restaurantService.findByPartOfName(
-        searchValue
-      );
-
-      res.status(SUCCESS_CODE).json({ data: restaurantList });
-    } catch (e) {
-      next(e);
-    }
-  }
-
-  async getRestaurantsBySortAndFilter(req, res, next) {
-    try {
-      const { filters, sorter, pagination } = req.body;
-
-      const restaurantsList = await restaurantService.findByFilters(
-        filters,
-        sorter,
-        pagination
-      );
-
-      res.status(SUCCESS_CODE).json({ data: restaurantsList });
-    } catch (e) {
-      next(e);
-    }
-  }
-
   async getPopularList(_req, res, next) {
     try {
       const restaurantsList = await restaurantService.getPopularList();
@@ -152,7 +122,6 @@ class RestaurantController {
 
   async getFilteredRestaurants(req, res, next) {
     try {
-      console.log(req.body);
       const { searchValue, pagination, filters } = req.body;
 
       const { restaurants, total } =

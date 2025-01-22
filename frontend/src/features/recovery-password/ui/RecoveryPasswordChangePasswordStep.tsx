@@ -5,8 +5,6 @@ import {
   RecoveryPasswordFormStepNames,
   RecoveryPasswordFormStepTypes,
 } from "../model/types";
-import { UserContext } from "@shared/context/UserContext";
-import { LoadingContext } from "@entities/Auth/model/LoadingContext";
 import useFormInstance from "antd/es/form/hooks/useFormInstance";
 import { Form } from "antd";
 import { Input } from "@shared/ui/Input";
@@ -14,6 +12,8 @@ import { equalPasswordRule } from "../lib/equalPasswordRule";
 import { Button } from "@shared/ui/Button";
 import s from "./styles/RecoveryPasswordChangePasswordStep.module.scss";
 import { observer } from "mobx-react-lite";
+import userStore from "@app/stores/UserStore";
+import { LoadingContext } from "@shared/context/LoadingContext";
 
 interface RecoveryPasswordFormChangePasswordStepProps {
   userId: string | null;
@@ -24,7 +24,6 @@ const RecoveryPasswordFormChangePasswordStep: FC<RecoveryPasswordFormChangePassw
   setCurrentStep,
   userId,
 }) => {
-  const userStore = useContext(UserContext);
   const { setIsLoading } = useContext(LoadingContext);
 
   const form = useFormInstance();

@@ -1,5 +1,4 @@
 import { ModalContext } from "@shared/context/ModalContext";
-import { UserContext } from "@shared/context/UserContext";
 import { FC, lazy, Suspense, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import s from "./Header.module.scss";
@@ -7,6 +6,7 @@ import { Button } from "@shared/ui/Button";
 import { Title } from "@shared/ui/Title";
 import { Spin } from "@shared/ui/Spin";
 import { observer } from "mobx-react-lite";
+import userStore from "@app/stores/UserStore";
 
 const LoginModal = lazy(() => import("@entities/Auth/ui/LoginModal"));
 const SearchModal = lazy(() => import("@features/restaurant/ui/SearchRestaurantsModal"));
@@ -16,7 +16,6 @@ const Header: FC = () => {
   const [isShowSearchModal, setIsShowSearchModal] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const userStore = useContext(UserContext);
   const modal = useContext(ModalContext);
 
   const navigate = useNavigate();

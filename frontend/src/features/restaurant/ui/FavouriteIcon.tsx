@@ -1,49 +1,59 @@
-import { UserContext } from "@shared/context/UserContext";
 import { Tooltip } from "antd";
 import { FC, useContext, useEffect, useState } from "react";
 import cn from "classnames";
 import s from "./styles/FavouriteIcon.module.scss";
 import { TagFilled, TagOutlined } from "@ant-design/icons";
-import { addPinnedRestaurant, checkPinnedRestaurant, removePinnedRestaurant } from "@entities/User/api/endpoints";
+import { addPinnedRestaurant, removePinnedRestaurant } from "@entities/User/api/endpoints";
+import { observer } from "mobx-react-lite";
+import userStore from "@app/stores/UserStore";
+import { LoadingContext } from "@shared/context/LoadingContext";
+import { ModalContext } from "@shared/context/ModalContext";
 
 interface FavouriteIconProps {
   restaurantId: number;
+  isAddedToFavourite: boolean;
   readOnly?: boolean;
 }
 
-const FavouriteIcon: FC<FavouriteIconProps> = ({ readOnly = false, restaurantId }) => {
-  const [isAdded, setIsAdded] = useState<boolean>(false);
+const FavouriteIcon: FC<FavouriteIconProps> = ({ readOnly = false, restaurantId, isAddedToFavourite }) => {
+  const [isAdded, setIsAdded] = useState<boolean>(isAddedToFavourite);
 
-  const {
-    user: { id },
-  } = useContext(UserContext);
+  const { user } = userStore;
+
+  const { setIsLoading } = useContext(LoadingContext);
+  const modal = useContext(ModalContext);
 
   useEffect(() => {
-    const checkPinned = async () => {
-      await checkPinnedRestaurant({ userId: id, restaurantId }).then((response) => {
-        const { data } = response.data;
+    setIsAdded(isAddedToFavourite);
+  }, [isAddedToFavourite]);
 
-        setIsAdded(data);
+  const onClickPinHandle = (event: any) => {
+    event.stopPropagation();
+
+    const endpoint = isAdded ? removePinnedRestaurant : addPinnedRestaurant;
+
+    setIsLoading(true);
+
+    endpoint({ userId: user.id, restaurantId }).then(() => {
+      setIsAdded(!isAdded);
+      setIsLoading(false);
+
+      const contentText = isAdded ? "Ресторан успешно удален из избранных" : "Ресторан успешно добавлен в избранные";
+
+      modal({
+        type: "info",
+        title: "Информация",
+        content: contentText,
+        icon: <div />,
       });
-    };
-
-    checkPinned();
-  }, [id, restaurantId]);
-
-  const onClickPinHandle = async () => {
-    if (isAdded) {
-      await removePinnedRestaurant({ userId: id, restaurantId }).then(() => setIsAdded(false));
-      return;
-    }
-
-    await addPinnedRestaurant({ userId: id, restaurantId }).then(() => setIsAdded(true));
+    });
   };
 
   const tooltipTitle = isAdded ? "Удалить из избранного" : "Добавить в избранное";
 
   const props = {
     className: cn(s["favourite-icon"], readOnly && s["favourite-icon_read-only"]),
-    onClick: () => !readOnly && onClickPinHandle(),
+    onClick: (event: any) => !readOnly && onClickPinHandle(event),
   };
 
   return (
@@ -53,4 +63,4 @@ const FavouriteIcon: FC<FavouriteIconProps> = ({ readOnly = false, restaurantId 
   );
 };
 
-export { FavouriteIcon };
+export default observer(FavouriteIcon);

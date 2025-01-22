@@ -1,7 +1,6 @@
-import { makeAutoObservable } from "mobx";
-import axios from "axios";
+import { action, computed, makeObservable, observable, runInAction } from "mobx";
 import { UserModel } from "@entities/User/model/types";
-import { BASE_URL } from "@app/api/axiosInstance";
+import $apiInstance, { BASE_URL } from "@app/api/axiosInstance";
 import { RefreshResponseModel } from "@entities/Auth/api/types";
 import {
   recoveryPasswordAuthInfoStep,
@@ -17,12 +16,36 @@ import {
   registrationUserInfoStep,
 } from "@features/registration/api/endpoints";
 
+const tokenKey = "token";
 class UserStore {
   user = {} as UserModel;
   isAuth = false;
+  isRefreshing = false;
+
+  private _token?: string = localStorage.getItem(tokenKey) ?? undefined;
+
+  get token(): string | undefined {
+    return this._token;
+  }
+
+  set token(value: string | undefined) {
+    if (value == null) {
+      localStorage.removeItem(tokenKey);
+      return;
+    }
+
+    localStorage.setItem(tokenKey, value);
+    this._token = value;
+  }
 
   constructor() {
-    makeAutoObservable(this);
+    makeObservable(this, {
+      token: computed,
+      isAuth: observable,
+      user: observable,
+      logout: action,
+      updateUserInfo: action,
+    });
   }
 
   setAuth(bool: boolean) {
@@ -31,6 +54,47 @@ class UserStore {
 
   setUser(user: UserModel) {
     this.user = user;
+  }
+
+  init(): void {
+    this.updateUserInfo().catch(() => {
+      runInAction(() => {
+        this.isAuth = false;
+        this.token = undefined;
+      });
+    });
+  }
+
+  async updateUserInfo(): Promise<void> {
+    if (this.token == null || this.token.length === 0) {
+      this.isAuth = false;
+      this.token = undefined;
+      return;
+    }
+
+    if (this.isRefreshing) {
+      return;
+    }
+
+    this.isRefreshing = true;
+
+    const result = await $apiInstance.get<RefreshResponseModel>(`${BASE_URL}/user/refresh`, {
+      withCredentials: true,
+    });
+
+    runInAction(() => {
+      if (result.status === 401) {
+        this.isAuth = false;
+        this.token = undefined;
+        this.isRefreshing = false;
+        return;
+      }
+
+      this.isAuth = true;
+      this.user = result.data.user;
+      this.token = result.data.accessToken;
+      this.isRefreshing = false;
+    });
   }
 
   async login(email: string, password: string) {
@@ -76,15 +140,6 @@ class UserStore {
     this.setUser({} as UserModel);
   }
 
-  async checkAuth() {
-    const response = await axios.get<RefreshResponseModel>(`${BASE_URL}/user/refresh`, { withCredentials: true });
-
-    localStorage.setItem("token", response.data.accessToken);
-
-    this.setAuth(true);
-    this.setUser(response.data.user);
-  }
-
   async recoveryPasswordAuthInfoStep(email?: string, phone?: string) {
     return await recoveryPasswordAuthInfoStep({ email, phone });
   }
@@ -110,4 +165,6 @@ class UserStore {
   }
 }
 
-export { UserStore };
+const userStore = new UserStore();
+
+export default userStore;

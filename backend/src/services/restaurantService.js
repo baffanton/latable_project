@@ -216,47 +216,6 @@ class RestaurantService {
     };
   }
 
-  async findByFilters(filters, sorter, pagination) {
-    const whereModel = filters.reduce((acc, filterItem) => {
-      const { value, field, mode } = filterItem;
-
-      if (mode === "IsEqual") {
-        return {
-          ...acc,
-          [field]: {
-            [Op.or]: value,
-          },
-        };
-      }
-
-      if (mode === "GreaterThanOrEqualTo") {
-        return {
-          ...acc,
-          [field]: {
-            [Op.gte]: value,
-          },
-        };
-      }
-
-      if (mode === "LessThanOrEqualTo") {
-        return {
-          ...acc,
-          [field]: {
-            [Op.lte]: value,
-          },
-        };
-      }
-
-      throw new BadRequest("Ошибочное построение фильтра");
-    }, {});
-
-    const filteredRestaurants = await RestaurantModel.findAll({
-      where: whereModel,
-    });
-
-    return filteredRestaurants;
-  }
-
   async getPopularList() {
     const restaurantsReview = await RestaurantReviewModel.findAll();
 

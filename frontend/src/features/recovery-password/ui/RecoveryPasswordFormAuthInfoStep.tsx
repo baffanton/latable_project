@@ -5,14 +5,15 @@ import {
   RecoveryPasswordFormStepNames,
   RecoveryPasswordFormStepTypes,
 } from "../model/types";
-import { UserContext } from "@shared/context/UserContext";
 import useFormInstance from "antd/es/form/hooks/useFormInstance";
 import { AuthType } from "@features/login/ui/AuthType";
 import { Button } from "@shared/ui/Button";
 import s from "./styles/RecoveryPasswordFormAuthInfoStep.module.scss";
-import { LoadingContext } from "@entities/Auth/model/LoadingContext";
 import { FormFooter } from "@shared/ui/FormFooter/ui/FormFooter";
 import { LoginModalTypes } from "@entities/Auth/model/types";
+import userStore from "@app/stores/UserStore";
+import { observer } from "mobx-react-lite";
+import { LoadingContext } from "@shared/context/LoadingContext";
 
 interface RecoveryPasswordFormAuthInfoStepProps {
   setCurrentStep: (value: RecoveryPasswordFormStepTypes) => void;
@@ -25,7 +26,6 @@ const RecoveryPasswordFormAuthInfoStep: FC<RecoveryPasswordFormAuthInfoStepProps
   setUserId,
   setLoginModalType,
 }) => {
-  const userStore = useContext(UserContext);
   const { setIsLoading } = useContext(LoadingContext);
 
   const form = useFormInstance();
@@ -78,4 +78,4 @@ const RecoveryPasswordFormAuthInfoStep: FC<RecoveryPasswordFormAuthInfoStepProps
   );
 };
 
-export { RecoveryPasswordFormAuthInfoStep };
+export default observer(RecoveryPasswordFormAuthInfoStep);

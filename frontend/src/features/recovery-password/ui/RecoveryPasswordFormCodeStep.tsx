@@ -7,7 +7,6 @@ import { Text } from "@shared/ui/Text";
 import { observer } from "mobx-react-lite";
 import { ModalContext } from "@shared/context/ModalContext";
 import s from "./styles/RecoveryPasswordCodeStep.module.scss";
-import { LoadingContext } from "@entities/Auth/model/LoadingContext";
 import {
   RecoveryPasswordFormAuthInfoStepNames,
   RecoveryPasswordFormCodeStepModel,
@@ -15,7 +14,8 @@ import {
   RecoveryPasswordFormStepNames,
   RecoveryPasswordFormStepTypes,
 } from "../model/types";
-import { UserContext } from "@shared/context/UserContext";
+import userStore from "@app/stores/UserStore";
+import { LoadingContext } from "@shared/context/LoadingContext";
 
 interface RecoveryPasswordCodeStepProps {
   userId: string | null;
@@ -27,7 +27,6 @@ const RecoveryPasswordCodeStep: FC<RecoveryPasswordCodeStepProps> = ({ userId, s
 
   const modal = useContext(ModalContext);
   const { setIsLoading } = useContext(LoadingContext);
-  const userStore = useContext(UserContext);
 
   const form = useFormInstance();
 
