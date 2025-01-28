@@ -1,5 +1,6 @@
 const DistrictModel = require("../models/DistrictModel");
 const EstablishmentTypeModel = require("../models/EstablishmentTypeModel");
+const CuisineModel = require("../models/CuisineModel");
 
 class DictionaryService {
   async getAgeDictionary() {
@@ -59,6 +60,15 @@ class DictionaryService {
     );
 
     return establishmentTypeDictionary;
+  }
+
+  async getSortTypeDictionary() {
+    const sortTypeValues = [
+      { label: "По увеличению среднего чека", value: 1 },
+      { label: "По уменьшению среднего чека", value: 2 },
+    ];
+
+    return sortTypeValues;
   }
 }
 

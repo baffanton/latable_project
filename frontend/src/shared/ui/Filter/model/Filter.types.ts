@@ -1,4 +1,5 @@
 import { PaginationModel } from "@shared/ui/Pagination/model/Pagination.types";
+import { Option } from "@shared/types/Option";
 
 export type FilterModeType = "IsEqual" | "GreaterThanOrEqualTo" | "LessThanOrEqualTo";
 
@@ -23,7 +24,13 @@ export interface FilterModel<T> {
   title: string;
   filterType: FilterType;
   filterMode: FilterModeType;
-  dataSource: () => Promise<any>;
+  dataSource: () => Axios.IPromise<Axios.AxiosXHR<Option<string | number>[]>>;
   defaultValue?: FilterValueTypes;
-  activeByDefault?: boolean;
+}
+
+export interface FilterItemProps<T> {
+  options: Option[];
+  filterName: T;
+  onChange: (newValue: any) => void;
+  currentValue?: FilterValueTypes;
 }

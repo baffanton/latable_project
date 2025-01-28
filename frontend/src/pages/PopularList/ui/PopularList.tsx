@@ -1,6 +1,6 @@
 import { RestaurantModel } from "@entities/Restaurant/model/types";
 import { Spin } from "@shared/ui/Spin";
-import { FC, useCallback, useContext, useEffect, useState } from "react";
+import { FC, useContext, useEffect, useState } from "react";
 import s from "./PopularList.module.scss";
 import { getPopularRestaurants } from "@entities/Restaurant/api/endpoints";
 import RestaurantMiniCard from "@entities/Restaurant/ui/RestaurantMiniCard";
@@ -12,7 +12,8 @@ import { LoadingContext } from "@shared/context/LoadingContext";
 
 const PopularList: FC = () => {
   const [items, setItems] = useState<RestaurantModel[]>([]);
-  const [pinnedRestaurants, setPinnedRestaurants] = useState<number[]>([]);
+  const [pinnedRestaurantIds, setPinnedRestaurantIds] = useState<number[]>([]);
+
   const [isLoadingItems, setIsLoadingItems] = useState<boolean>(false);
   const [isLoadingPinnedInfo, setIsLoadingPinnedInfo] = useState<boolean>(false);
 
@@ -20,30 +21,30 @@ const PopularList: FC = () => {
 
   const { isLoading: isLoadingContext } = useContext(LoadingContext);
 
-  const getRestaurants = useCallback(async () => getPopularRestaurants(), []);
-
-  const getPinnedRestaurants = useCallback(
-    async (restaurantIds: number[]) => checkPinnedRestaurantList({ userId: user.id, restaurantIds }),
-    [user.id],
-  );
-
   useEffect(() => {
+    const getRestaurants = async () => getPopularRestaurants();
+
     setIsLoadingItems(true);
     getRestaurants()
       .then((response) => setItems(response.data.data))
       .finally(() => setIsLoadingItems(false));
-  }, [getRestaurants]);
+  }, []);
 
   useEffect(() => {
     if (!items || !items.length || !user.id) {
       return;
     }
 
+    const getPinnedRestaurants = async (restaurantIds: number[]) =>
+      checkPinnedRestaurantList({ userId: user.id, restaurantIds });
+
     setIsLoadingPinnedInfo(true);
     getPinnedRestaurants(items.map((item) => item.id))
-      .then((response) => setPinnedRestaurants(response.data.data.filter((item) => item.pinned).map((item) => item.id)))
+      .then((response) =>
+        setPinnedRestaurantIds(response.data.data.filter((item) => item.pinned).map((item) => item.id)),
+      )
       .finally(() => setIsLoadingPinnedInfo(false));
-  }, [getPinnedRestaurants, items, user.id]);
+  }, [items, user.id]);
 
   const isLoading = isLoadingItems || isLoadingPinnedInfo || isLoadingContext;
 
@@ -58,7 +59,7 @@ const PopularList: FC = () => {
           <RestaurantMiniCard
             key={item.id}
             restaurantInfo={item}
-            isAddedToFavourite={pinnedRestaurants.includes(item.id)}
+            isAddedToFavourite={pinnedRestaurantIds.includes(item.id)}
           />
         ))}
       </div>

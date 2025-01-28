@@ -1,0 +1,16 @@
+@use "@app/styles/global.scss" as global;
+
+.ant-radio-wrapper {
+  color: global.$white;
+  font-family: global.$raleway;
+  font-size: 15px;
+}
+
+.ant-radio-inner {
+  border-color: global.$mint !important;
+  background-color: global.$mint !important;
+}
+
+.ant-radio-inner::after {
+  transform: scale(0.5) !important;
+}

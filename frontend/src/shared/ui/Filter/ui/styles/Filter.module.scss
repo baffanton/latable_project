@@ -1,0 +1,41 @@
+@use "@app/styles/global.scss" as global;
+
+.filter {
+  width: 100%;
+  color: global.$white;
+  position: relative;
+}
+
+.filter__header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  height: 47px;
+  border: 1px solid global.$white;
+  border-radius: 10px;
+  padding: 0 15px;
+}
+
+.filter_open .filter__header {
+  border-bottom: none;
+  border-radius: 10px 10px 0 0;
+  border-color: global.$mint;
+}
+
+.filter_open .filter__title, .filter_open .filter__dropdown-icon {
+  color: global.$mint;
+}
+
+.filter__content {
+  padding: 15px;
+  position: absolute;
+  z-index: 100;
+  background-color: global.$blackBlue;
+  width: 100%;
+  border: 1px solid global.$mint;
+  border-top: none;
+  border-radius: 0 0 10px 10px;
+}
+

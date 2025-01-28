@@ -1,0 +1,77 @@
+@use "@app/styles/global.scss" as global;
+
+.ant-pagination-options .ant-select {
+  height: 100%;
+}
+
+.pagination .ant-select-selection-item {
+  cursor: pointer;
+  color: global.$white;
+  font-family: global.$abel;
+  font-size: 20px;
+}
+
+.pagination .ant-select-selector {
+  border-radius: 5px !important;
+  display: flex;
+  gap: 10px;
+  border-color: global.$mint !important;
+  background-color: transparent !important;
+  cursor: pointer !important;
+}
+
+.pagination .ant-select-selection-search {
+  display: none;
+}
+
+.pagination .ant-select-arrow, .pagination .ant-pagination-next .anticon, .pagination .ant-pagination-prev .anticon {
+  color: global.$mint !important;
+}
+
+.pagination .ant-pagination-item {
+  border-radius: 5px;
+  background-color: transparent;
+  border-color: global.$mint;
+}
+
+.pagination .ant-pagination-item:hover, .pagination .ant-pagination-item:active {
+  background-color: global.$mint !important;
+}
+
+.pagination .ant-pagination-item a {
+  color: global.$white;
+  font-family: global.$abel;
+  font-size: 20px;
+}
+
+.pagination .ant-pagination-item:hover a {
+  color: global.$blackBlue;
+}
+
+.pagination .ant-pagination-item-ellipsis {
+  color: global.$mint !important;
+}
+
+.pagination .ant-pagination-item-active {
+  background-color: global.$mint;
+}
+
+.pagination .ant-pagination-item-active a {
+  color: global.$blackBlue;
+}
+
+.ant-pagination-options .ant-select-dropdown {
+  background-color: global.$mintDark;
+}
+
+.ant-pagination-options .ant-select-item {
+  text-align: center;
+  font-family: global.$abel;
+  font-weight: 400 !important;
+  font-size: 16px !important;
+}
+
+.ant-pagination-options .ant-select-item:hover,
+.ant-pagination-options .ant-select-item-option-selected {
+  background-color: #e6f4ff;
+}

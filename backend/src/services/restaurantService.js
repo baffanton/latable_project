@@ -271,16 +271,16 @@ class RestaurantService {
   }
 
   async getFilteredRestaurants(searchValue, filters, pagination) {
-    const mappedFields = filters.map((filter) => {
-      if (filter.field === "establishmentTypeId") {
+    const mappedFields = filters.filter((filter) => filter.field !== "sort").map((filter) => {
+      if (filter.field === "establishmentType") {
         return { ...filter, field: "establishment_type_id" };
       }
 
-      if (filter.field === "cuisineId") {
+      if (filter.field === "cuisine") {
         return { ...filter, field: "cuisine_id" };
       }
 
-      if (filter.field === "districtId") {
+      if (filter.field === "district") {
         return { ...filter, field: "district_id" };
       }
 
@@ -292,7 +292,7 @@ class RestaurantService {
         return {
           ...acc,
           [field]: {
-            [Op.eq]: value,
+            [Op.or]: value,
           },
         };
       }
@@ -316,17 +316,48 @@ class RestaurantService {
       }
     }, {});
 
-    const withSearch =
+    const searchFilter =
       searchValue === ""
         ? filteredModel
         : { ...filteredModel, name: { [Op.like]: `%${searchValue}%` } };
 
-    const total = await RestaurantModel.count({ where: withSearch });
+    const total = await RestaurantModel.count({ where: searchFilter });
+
+    const applySort = () => {
+      const sortInfo = filters.find((filter) => filter.field === "sort");
+
+      const { value } = sortInfo;
+
+      switch (value) {
+        default:
+        case 1: {
+          return ["average_check", "ASC"];
+        }
+        case 2: {
+          return ["average_check", "DESC"];
+        }
+      }
+    }
+
+    const withOrder = !!filters.find((filter) => filter.field === "sort");
+
+    if (withOrder) {
+      const order = applySort();
+
+      const findedRestaurants = await RestaurantModel.findAll({
+        order: [order],
+        limit: pagination.limit,
+        offset: pagination.offset,
+        where: searchFilter,
+      });
+
+      return { restaurants: findedRestaurants, total };
+    }
 
     const findedRestaurants = await RestaurantModel.findAll({
       limit: pagination.limit,
       offset: pagination.offset,
-      where: withSearch,
+      where: searchFilter,
     });
 
     return { restaurants: findedRestaurants, total };
