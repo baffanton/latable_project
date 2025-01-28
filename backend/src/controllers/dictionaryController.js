@@ -52,6 +52,16 @@ class DictionaryController {
       next(e);
     }
   }
+
+  async getSortType(_req, res, next) {
+    try {
+      const dictItems = await dictionaryService.getSortTypeDictionary();
+
+      res.status(SUCCESS_CODE).json(dictItems);
+    } catch (e) {
+      next(e);
+    }
+  }
 }
 
 module.exports = new DictionaryController();

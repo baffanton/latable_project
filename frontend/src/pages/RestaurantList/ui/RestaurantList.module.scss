@@ -1,0 +1,49 @@
+@use "@app/styles/global.scss" as global;
+
+.restaurant-list {
+  padding: 100px 0;
+  margin: 0 auto;
+  width: 80%;
+  flex-direction: column;
+  display: flex;
+  gap: 30px;
+}
+
+.restaurant-list__title {
+  text-align: center;
+}
+
+.restaurant-list__filters-container {
+  display: grid;
+  grid-template-columns: 90% 10%;
+  align-items: center;
+}
+
+.restaurant-list__filters {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+}
+
+.restaurant-list__buttons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 40px;
+}
+
+.restaurant-list__apply, .restaurant-list__delete {
+  font-size: 25px;
+  color: global.$mint;
+}
+
+.restaurant-list__content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.restaurant-list__items {
+  margin-bottom: 20px;
+}

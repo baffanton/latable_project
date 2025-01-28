@@ -14,5 +14,6 @@ dictionaryRouter.get(
   "/get-establishment-type",
   dictionaryController.getEstablishmentTypeDictionary
 );
+dictionaryRouter.get("/get-sort-type", dictionaryController.getSortType)
 
 module.exports = dictionaryRouter;

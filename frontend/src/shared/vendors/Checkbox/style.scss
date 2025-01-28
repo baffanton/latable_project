@@ -1,0 +1,12 @@
+@use "@app/styles/global.scss" as global; 
+
+.ant-checkbox-wrapper {
+  color: global.$white;
+  font-family: global.$raleway;
+  font-size: 15px;
+}
+
+.ant-checkbox-inner {
+  border-color: global.$mint !important;
+  background-color: global.$mint !important;
+}
