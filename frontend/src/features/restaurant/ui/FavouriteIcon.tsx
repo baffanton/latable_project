@@ -1,5 +1,5 @@
 import { Tooltip } from "antd";
-import { FC, useContext, useEffect, useState } from "react";
+import { FC, useContext, useEffect, useState, MouseEvent } from "react";
 import cn from "classnames";
 import s from "./styles/FavouriteIcon.module.scss";
 import { TagFilled, TagOutlined } from "@ant-design/icons";
@@ -27,7 +27,7 @@ const FavouriteIcon: FC<FavouriteIconProps> = ({ readOnly = false, restaurantId,
     setIsAdded(isAddedToFavourite);
   }, [isAddedToFavourite]);
 
-  const onClickPinHandle = (event: any) => {
+  const onClickPinHandle = (event: MouseEvent<HTMLImageElement>) => {
     event.stopPropagation();
 
     const endpoint = isAdded ? removePinnedRestaurant : addPinnedRestaurant;
@@ -53,7 +53,7 @@ const FavouriteIcon: FC<FavouriteIconProps> = ({ readOnly = false, restaurantId,
 
   const props = {
     className: cn(s["favourite-icon"], readOnly && s["favourite-icon_read-only"]),
-    onClick: (event: any) => !readOnly && onClickPinHandle(event),
+    onClick: (event: MouseEvent<HTMLImageElement>) => !readOnly && onClickPinHandle(event),
   };
 
   return (

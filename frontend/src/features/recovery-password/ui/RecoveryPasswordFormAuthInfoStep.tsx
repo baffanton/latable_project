@@ -9,7 +9,7 @@ import useFormInstance from "antd/es/form/hooks/useFormInstance";
 import { AuthType } from "@features/login/ui/AuthType";
 import { Button } from "@shared/ui/Button";
 import s from "./styles/RecoveryPasswordFormAuthInfoStep.module.scss";
-import { FormFooter } from "@shared/ui/FormFooter/ui/FormFooter";
+import { FormFooter } from "@shared/ui/FormFooter";
 import { LoginModalTypes } from "@entities/Auth/model/types";
 import userStore from "@app/stores/UserStore";
 import { observer } from "mobx-react-lite";

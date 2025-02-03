@@ -1,7 +1,7 @@
 import { FC } from "react";
 import s from "./NotFoundPage.module.scss";
 import { RobotOutlined } from "@ant-design/icons";
-import { Text } from "@shared/ui/Text/index";
+import { Text } from "@shared/ui/Text";
 import { Button } from "@shared/ui/Button";
 import { useNavigate } from "react-router-dom";
 

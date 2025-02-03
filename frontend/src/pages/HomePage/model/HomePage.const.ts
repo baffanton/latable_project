@@ -1,4 +1,4 @@
-import { TypeCardTypes } from "./types";
+import { TypeCardTypes } from "./HomePage.types";
 
 export const establishmentTypeIds = {
   [TypeCardTypes.fastfood]: "1",

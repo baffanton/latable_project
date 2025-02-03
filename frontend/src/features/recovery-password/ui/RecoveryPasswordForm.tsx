@@ -6,7 +6,7 @@ import { RecoveryPasswordFormStepTypes } from "../model/types";
 import RecoveryPasswordFormAuthInfoStep from "./RecoveryPasswordFormAuthInfoStep";
 import RecoveryPasswordFormCodeStep from "./RecoveryPasswordFormCodeStep";
 import RecoveryPasswordChangePasswordStep from "./RecoveryPasswordChangePasswordStep";
-import SuccessStep from "@shared/ui/SuccessStep/ui/SuccessStep";
+import SuccessStep from "@shared/ui/SuccessStep";
 
 interface RecoveryPasswordFormProps {
   setLoginModalType: (value: LoginModalTypes) => void;

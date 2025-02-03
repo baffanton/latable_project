@@ -39,16 +39,19 @@ const Filter = <T,>({ filter, onChange, stopLoading, startLoading }: FilterProps
 
   useEffect(() => {
     getOptions();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dataSource]);
 
   useEffect(() => {
     if (options && defaultValue && options.find((option) => option.value === defaultValue)) {
       setCurrentValue(defaultValue);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [options]);
 
   useEffect(() => {
     setCurrentValue(defaultValue);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const onClickOutsideHandler = (event: MouseEvent) => {
@@ -69,7 +72,7 @@ const Filter = <T,>({ filter, onChange, stopLoading, startLoading }: FilterProps
     setIsOpen(!isOpen);
   };
 
-  const onChangeFilterHandler = (values: any) => {
+  const onChangeFilterHandler = (values: FilterValueTypes) => {
     setCurrentValue(values);
     onChange(key, filterMode, values);
   };
@@ -82,7 +85,7 @@ const Filter = <T,>({ filter, onChange, stopLoading, startLoading }: FilterProps
             options={options}
             filterName={key}
             onChange={onChangeFilterHandler}
-            currentValue={currentValue}
+            currentValue={currentValue as number[]}
           />
         );
       case "radio":

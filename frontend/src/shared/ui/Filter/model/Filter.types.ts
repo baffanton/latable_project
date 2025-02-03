@@ -31,6 +31,6 @@ export interface FilterModel<T> {
 export interface FilterItemProps<T> {
   options: Option[];
   filterName: T;
-  onChange: (newValue: any) => void;
+  onChange: (newValue: FilterValueTypes) => void;
   currentValue?: FilterValueTypes;
 }

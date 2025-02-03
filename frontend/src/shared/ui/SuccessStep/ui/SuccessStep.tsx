@@ -1,6 +1,6 @@
 import { Button } from "@shared/ui/Button";
 import { FC } from "react";
-import { Text } from "@shared/ui/Text/index";
+import { Text } from "@shared/ui/Text";
 import { CheckCircleOutlined } from "@ant-design/icons";
 import s from "./SuccessStep.module.scss";
 

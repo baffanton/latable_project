@@ -1,14 +1,14 @@
 import { Input as AntdInput, InputProps as AntdInputProps } from "antd";
 import { InputTypes } from "../model/Input.types";
-import { FC } from "react";
+import { FC, KeyboardEvent } from "react";
 import cn from "classnames";
 import "./Input.scss";
 import { OTPProps } from "antd/es/input/OTP";
 import { PasswordProps } from "antd/es/input";
 
-interface InputProps extends Omit<AntdInputProps, "type" | "size" | "onKeyDown"> {
+interface InputProps extends Omit<AntdInputProps, "type" | "onKeyDown"> {
   type?: InputTypes;
-  onKeyDown?: (event: KeyboardEvent) => void;
+  onKeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
   length?: number;
 }
 
@@ -20,9 +20,7 @@ const Input: FC<InputProps> = ({ type = "text", onKeyDown, length, className, ..
   }
 
   if (type === "otp") {
-    return (
-      <AntdInput.OTP className={classNames} onKeyDown={onKeyDown as any} length={length} {...(props as OTPProps)} />
-    );
+    return <AntdInput.OTP className={classNames} onKeyDown={onKeyDown} length={length} {...(props as OTPProps)} />;
   }
 
   return <AntdInput className={classNames} {...props} />;

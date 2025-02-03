@@ -3,7 +3,7 @@ import s from "./styles/RestaurantBanner.module.scss";
 import { getBackgroudImage } from "../lib/getBackgroudImage";
 import { RestaurantModel } from "../model/types";
 import { useNavigate } from "react-router-dom";
-import { Text } from "@shared/ui/Text/index";
+import { Text } from "@shared/ui/Text";
 
 interface RestaurantBannerProps {
   restaurantData: RestaurantModel;

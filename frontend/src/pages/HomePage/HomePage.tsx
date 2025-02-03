@@ -1,9 +1,9 @@
 import { FC } from "react";
-import { TypeCardTypes } from "../model/types";
 import { createSearchParams, useNavigate } from "react-router-dom";
 import s from "./HomePage.module.scss";
 import TypeCard from "@features/home/ui/TypeCard";
-import { establishmentTypeIds, typeCards } from "../model/const";
+import { establishmentTypeIds, typeCards } from "./model/HomePage.const";
+import { TypeCardTypes } from "./model/HomePage.types";
 
 const HomePage: FC = () => {
   const navigate = useNavigate();

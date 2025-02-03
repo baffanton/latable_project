@@ -6,7 +6,7 @@ import RegistrationFormAuthInfoStep from "./RegistrationFormAuthInfoStep";
 import RegistrationFormUserInfoStep from "./RegistrationFormUserInfoStep";
 import { RegistrationFormStepTypes } from "../model/types";
 import RegistrationCodeStep from "./RegistrationCodeStep";
-import SuccessStep from "@shared/ui/SuccessStep/ui/SuccessStep";
+import SuccessStep from "@shared/ui/SuccessStep";
 
 interface RegistrationFormProps {
   setIsShowModal: (value: boolean) => void;

@@ -2,12 +2,10 @@ import { RestaurantModel } from "@entities/Restaurant/model/types";
 import { FilterItemModel, FilterModeType, FilterValueTypes } from "@shared/ui/Filter/model/Filter.types";
 import { defaultPagination } from "@shared/ui/Pagination/model/Pagination.const";
 import { PaginationModel } from "@shared/ui/Pagination/model/Pagination.types";
-import { FC, useEffect, useMemo, useState } from "react";
+import { ChangeEvent, FC, useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { filtersConfig } from "../model/filtersConfig";
 import { getRestaurants } from "@entities/Restaurant/api/endpoints";
 import s from "./RestaurantList.module.scss";
-import { RestaurantListFilterTypes } from "../model/RestaurantList.types";
 import { Input } from "@shared/ui/Input";
 import { CheckOutlined, DeleteOutlined, SearchOutlined } from "@ant-design/icons";
 import RestaurantMiniCard from "@entities/Restaurant/ui/RestaurantMiniCard";
@@ -15,11 +13,13 @@ import { Tooltip } from "antd";
 import { Title } from "@shared/ui/Title";
 import { Spin } from "@shared/ui/Spin";
 import { useDebounce } from "@shared/hooks/useDebounce";
-import { NotFound } from "@shared/ui/NotFound/ui/NotFound";
+import { NotFound } from "@shared/ui/NotFound";
 import { Pagination } from "@shared/ui/Pagination";
 import { Filter } from "@shared/ui/Filter";
 import userStore from "@app/stores/UserStore";
 import { checkPinnedRestaurantList } from "@entities/User/api/endpoints";
+import { filtersConfig } from "./model/filtersConfig";
+import { RestaurantListFilterTypes } from "./model/RestaurantList.types";
 
 const RestaurantList: FC = () => {
   const [filters, setFilters] = useState<FilterItemModel[]>([]);
@@ -106,6 +106,7 @@ const RestaurantList: FC = () => {
 
   useEffect(() => {
     getItems();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchValue, defaultFilters, paginationData]);
 
   const onChangeFilterHandler = (filterName: string, filterMode: FilterModeType, newValue: FilterValueTypes) => {
@@ -119,7 +120,7 @@ const RestaurantList: FC = () => {
     setFilters([...filters, { field: filterName, mode: filterMode, value: newValue }]);
   };
 
-  const onChangeSearchHandler = (e: any) => {
+  const onChangeSearchHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
   };
 
