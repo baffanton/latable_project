@@ -3,7 +3,12 @@ import cafeImage from "../assets/Cafe.png";
 import barImage from "../assets/Bar.png";
 import restaurantImage from "../assets/Restaurant.png";
 import grillImage from "../assets/Grill.png";
-import { TypeCardInfoHeight, TypeCardInfoWidth, TypeCardModel, TypeCardTypes } from "@pages/HomePage/model/types";
+import {
+  TypeCardInfoHeight,
+  TypeCardInfoWidth,
+  TypeCardModel,
+  TypeCardTypes,
+} from "@pages/HomePage/model/HomePage.types";
 
 const getCardInfoByCardId = (cardId: TypeCardTypes): TypeCardModel => {
   switch (cardId) {

@@ -1,5 +1,5 @@
 import { RestaurantModel } from "@entities/Restaurant/model/types";
-import { FC, useState } from "react";
+import { ChangeEvent, FC, useState } from "react";
 import { createSearchParams, useNavigate } from "react-router-dom";
 import { useDebounce } from "@shared/hooks/useDebounce";
 import { getRestaurants } from "../../../entities/Restaurant/api/endpoints";
@@ -11,7 +11,7 @@ import { SearchOutlined } from "@ant-design/icons";
 import s from "./styles/SearchRestaurantsModal.module.scss";
 import { Button } from "@shared/ui/Button";
 import { RestaurantBanner } from "@entities/Restaurant/ui/RestaurantBanner";
-import { NotFound } from "@shared/ui/NotFound/ui/NotFound";
+import { NotFound } from "@shared/ui/NotFound";
 import { Spin } from "@shared/ui/Spin";
 
 interface SearchRestaurantsModalProps {
@@ -52,7 +52,7 @@ const SearchRestaurantsModal: FC<SearchRestaurantsModalProps> = ({ setIsOpenModa
     });
   });
 
-  const onChange = (e: any) => {
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     onSearchHandler(e.target.value);
     setSearchValue(e.target.value);
   };

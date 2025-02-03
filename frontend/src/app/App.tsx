@@ -1,7 +1,7 @@
 import { ModalProvider } from "./providers/ModalProvider";
-import "./styles/global.scss";
-import "@shared/vendors/index";
-import "./styles/main.scss";
+import "@shared/styles/global.scss";
+import "@shared/vendors";
+import "./main.scss";
 import { AppRouter } from "./routers";
 import { Header } from "@widgets/Header";
 import { BrowserRouter } from "react-router-dom";

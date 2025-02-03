@@ -1,5 +1,5 @@
 import useFormInstance from "antd/es/form/hooks/useFormInstance";
-import { FC, useContext, useState } from "react";
+import { FC, useContext, useState, KeyboardEvent } from "react";
 import { Form } from "antd";
 import { Input } from "@shared/ui/Input";
 import { Button } from "@shared/ui/Button";
@@ -35,7 +35,7 @@ const RecoveryPasswordCodeStep: FC<RecoveryPasswordCodeStepProps> = ({ userId, s
     RecoveryPasswordFormAuthInfoStepNames.email,
   ]);
 
-  const onKeyDownHandler = (event: KeyboardEvent) => {
+  const onKeyDownHandler = (event: KeyboardEvent<HTMLInputElement>) => {
     if (!/^[0-9]{1}$/.test(event.key) && event.key !== "Backspace" && event.key !== "Delete") {
       event.preventDefault();
     }

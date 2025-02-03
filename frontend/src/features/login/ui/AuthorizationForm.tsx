@@ -6,7 +6,7 @@ import { validateMessages } from "@shared/validate/validateMessages";
 import s from "./styles/AuthorizationForm.module.scss";
 import { AuthType } from "./AuthType";
 import { LoginModalTypes } from "@entities/Auth/model/types";
-import { FormFooter } from "../../../shared/ui/FormFooter/ui/FormFooter";
+import { FormFooter } from "@shared/ui/FormFooter";
 import userStore from "@app/stores/UserStore";
 import { LoadingContext } from "@shared/context/LoadingContext";
 

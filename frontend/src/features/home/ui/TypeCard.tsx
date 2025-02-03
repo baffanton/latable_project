@@ -1,7 +1,7 @@
 import { FC, useState } from "react";
 import cn from "classnames";
 import s from "./TypeCard.module.scss";
-import { TypeCardModel, TypeCardTypes } from "@pages/HomePage/model/types";
+import { TypeCardModel, TypeCardTypes } from "@pages/HomePage/model/HomePage.types";
 import { getCardInfoByCardId } from "../lib/getCardInfoByCardId";
 import { Image } from "@shared/ui/Image";
 import { Title } from "@shared/ui/Title";

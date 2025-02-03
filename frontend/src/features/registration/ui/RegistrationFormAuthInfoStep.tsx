@@ -5,7 +5,7 @@ import { Input } from "@shared/ui/Input";
 import { Button } from "@shared/ui/Button";
 import { observer } from "mobx-react-lite";
 import s from "./styles/RegistrationFormAuthInfoStep.module.scss";
-import { FormFooter } from "@shared/ui/FormFooter/ui/FormFooter";
+import { FormFooter } from "@shared/ui/FormFooter";
 import { LoginModalTypes } from "@entities/Auth/model/types";
 import {
   RegistrationFormAuthInfoStepModel,

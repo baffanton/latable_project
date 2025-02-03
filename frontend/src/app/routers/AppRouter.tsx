@@ -2,10 +2,10 @@ import { Route, Routes } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import { Spin } from "@shared/ui/Spin";
 
-const PopularList = lazy(() => import("@pages/PopularList/ui/PopularList"));
-const HomePage = lazy(() => import("@pages/HomePage/ui/HomePage"));
-const NotFoundPage = lazy(() => import("@pages/NotFoundPage/ui/NotFoundPage"));
-const RestaurantList = lazy(() => import("@pages/RestaurantList/ui/RestaurantList"));
+const PopularList = lazy(() => import("@pages/PopularList"));
+const HomePage = lazy(() => import("@pages/HomePage"));
+const NotFoundPage = lazy(() => import("@pages/NotFoundPage"));
+const RestaurantList = lazy(() => import("@pages/RestaurantList"));
 
 const AppRouter = () => (
   <Routes>
